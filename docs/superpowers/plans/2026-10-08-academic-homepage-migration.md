@@ -1,6 +1,6 @@
 # Academic Homepage Migration Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** 复用参考网站的 AcadHomepage 模板，将 Xiaoyun Dong 的主页迁移为可手工编辑的 Markdown，并保留旧版本和原项目链接。
 
@@ -34,8 +34,8 @@
 
 **Interfaces:** 输入为参考模板与旧站快照；输出为可在 `_site/` 构建出的唯一首页及原静态子页面。Task 2 在同一套模板中补齐内容。
 
-- [ ] 使用 using-git-worktrees 技能检查隔离环境，在仓库内的 `.worktrees/academic` 建立 `redesign/academic` worktree；将 `.worktrees/` 忽略，防止构建或提交包含独立 checkout。已有合适的独立 worktree 时复用。
-- [ ] 在 `tests/test_site.py` 使用 `unittest` 和 `html.parser.HTMLParser` 写小型构建产物检查：`test_homepage_identity` 检查 `_site/index.html` 中侧栏姓名和 Scholar 链接；`test_local_resources_and_anchors` 检查首页的本地 CSS、脚本、图片、链接和章节锚点；`test_legacy_page_export` 检查旧 F1TENTH 页逐字保留及其 CSS、脚本、图片存在。测试以站点根目录为基准解析 URL，跳过外部网址和 `mailto:`，目录链接解析为 `index.html`。
+- [x] 使用 using-git-worktrees 技能检查隔离环境，在仓库内的 `.worktrees/academic` 建立 `redesign/academic` worktree；将 `.worktrees/` 忽略，防止构建或提交包含独立 checkout。已有合适的独立 worktree 时复用。
+- [x] 在 `tests/test_site.py` 使用 `unittest` 和 `html.parser.HTMLParser` 写小型构建产物检查：`test_homepage_identity` 检查 `_site/index.html` 中侧栏姓名和 Scholar 链接；`test_local_resources_and_anchors` 检查首页的本地 CSS、脚本、图片、链接和章节锚点；`test_legacy_page_export` 检查旧 F1TENTH 页逐字保留及其 CSS、脚本、图片存在。测试以站点根目录为基准解析 URL，跳过外部网址和 `mailto:`，目录链接解析为 `index.html`。
 
   解析结果提供 `author_name: str`、`links: list[str]`、`ids: set[str]`、`text: str`；本地资源和链接转换为 `_site/` 下的 `Path`。上述三个测试分别使用这些断言：
 
@@ -47,14 +47,14 @@
   self.assertEqual(exported_legacy.read_bytes(), source_legacy.read_bytes())
   ```
 
-- [ ] 运行 `python3 -m unittest discover -s tests -v`，确认缺少 `_site/index.html` 时失败，不能默默跳过构建产物检查。
-- [ ] 从参考副本引入上列模板文件和本地字体，保留第三方许可证；不复制其 `.git`、个人照片、论文附件、爬虫、工作流或统计配置。
-- [ ] 设置作者信息和已确认的经历；头像引用已有 `authors/admin/` 文件。首页使用 `permalink: /`，移除旧根首页以消除路径冲突；忽略 `_site/`、`.bundle/`、`vendor/` 和本地临时文件，并在 Jekyll 配置中排除测试、设计文档与 worktree。
-- [ ] 移除模板对缺失 `compress` 布局的引用、无用统计脚本及嵌套 `<head>`；资源路径使用 Jekyll 的 `relative_url`，避免旧页深层路径导致 404。移除全局 `<base target="_blank">`，保留必要外链的独立目标设置。
-- [ ] 检查模板在手机上的联系人展示和导航行为；给菜单按钮添加可访问名称，保留可见焦点，只修改相关布局、样式或现有脚本。
-- [ ] 配置模板现有的 GitHub Pages 构建依赖，去掉未使用的 `hawkins`；生成适合本机 Ruby 与 Bundler 的锁文件，不盲目沿用要求 Bundler 2.7.1 的上游锁文件。依赖安装到当前 checkout 的 `vendor/bundle`，不修改全局 Ruby 环境。
-- [ ] 运行 `bundle3.0 exec jekyll build --trace` 与上述 unittest 命令，预期构建成功、无首页冲突或缺失布局，三项检查通过。检查 `git diff homepage-v1-wowchemy -- research publication authors css js en` 确认旧资源未被修改。
-- [ ] 提交这一独立可构建结果：`feat: adopt AcadHomepage template and preserve legacy pages`。
+- [x] 运行 `python3 -m unittest discover -s tests -v`，确认缺少 `_site/index.html` 时失败，不能默默跳过构建产物检查。
+- [x] 从参考副本引入上列模板文件和本地字体，保留第三方许可证；不复制其 `.git`、个人照片、论文附件、爬虫、工作流或统计配置。
+- [x] 设置作者信息和已确认的经历；头像引用已有 `authors/admin/` 文件。首页使用 `permalink: /`，移除旧根首页以消除路径冲突；忽略 `_site/`、`.bundle/`、`vendor/` 和本地临时文件，并在 Jekyll 配置中排除测试、设计文档与 worktree。
+- [x] 移除模板对缺失 `compress` 布局的引用、无用统计脚本及嵌套 `<head>`；资源路径使用 Jekyll 的 `relative_url`，避免旧页深层路径导致 404。移除全局 `<base target="_blank">`，保留必要外链的独立目标设置。
+- [x] 检查模板在手机上的联系人展示和导航行为；给菜单按钮添加可访问名称，保留可见焦点，只修改相关布局、样式或现有脚本。
+- [x] 配置模板现有的 GitHub Pages 构建依赖，去掉未使用的 `hawkins`；生成适合本机 Ruby 与 Bundler 的锁文件，不盲目沿用要求 Bundler 2.7.1 的上游锁文件。依赖安装到当前 checkout 的 `vendor/bundle`，不修改全局 Ruby 环境。
+- [x] 运行 `bundle3.0 exec jekyll build --trace` 与上述 unittest 命令，预期构建成功、无首页冲突或缺失布局，三项检查通过。检查 `git diff homepage-v1-wowchemy -- research publication authors css js en` 确认旧资源未被修改。
+- [x] 提交这一独立可构建结果：`feat: adopt AcadHomepage template and preserve legacy pages`。
 
 ## Task 2: 内容初稿、预览与维护说明
 

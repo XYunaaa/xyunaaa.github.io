@@ -1,0 +1,13 @@
+main:
+  - title: "About"
+    url: "/#about"
+  - title: "Education & Experience"
+    url: "/#education"
+  - title: "News"
+    url: "/#news"
+  - title: "Publications"
+    url: "/#publications"
+  - title: "Projects"
+    url: "/#research"
+  - title: "Honors"
+    url: "/#honors"
