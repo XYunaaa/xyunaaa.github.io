@@ -62,7 +62,7 @@
 
 **Interfaces:** 使用 Task 1 的构建命令和 `_site/` 产物；输出为完整内容初稿、桌面与手机预览、手工维护说明。
 
-- [ ] 在 `tests/test_site.py` 加入 `test_publication_types`：检查三个设计中明确的 arXiv 链接、预印本标注及 VI-Planning 的主论文、Demo、Poster 标注。复用 HTML 解析结果，不要求未来始终只有 11 项论文。
+- [x] 在 `tests/test_site.py` 加入 `test_publication_types`：检查三个设计中明确的 arXiv 链接、预印本标注及 VI-Planning 的主论文、Demo、Poster 标注。复用 HTML 解析结果，不要求未来始终只有 11 项论文。
 
   ```python
   for paper_id in ("2607.12214", "2607.09764", "2605.07910"):
@@ -72,12 +72,12 @@
   self.assertIn("Poster: VI-Planning", home.text)
   ```
 
-- [ ] 运行新增检查，确认 Task 1 的最小内容首页未包含完整论文时失败。
-- [ ] 在 `_pages/about.md` 写入简介、教育与工作经历、已有新闻、设计表中的论文、原项目与已有荣誉；保留毕业论文链接。按年份降序列论文，完整列出已有来源中的作者，突出 Xiaoyun Dong，不猜测共同一作或录用状态。按钮使用本地文字样式，现有代码与 BibTeX 链接继续可用。
-- [ ] 为各章节设置稳定锚点并保留 Review Focus 中的旧锚点；导航显示 About、Education & Experience、News、Publications、Projects 和 Honors。删除空 Gallery 占位及参考作者的个人内容，允许真实论文作者列表出现合作者 Yang Lou。
-- [ ] 在 README 写明手工修改的三个文件、依赖安装与预览命令、发布前备份旧标签的方法，以及用 `git worktree add --detach` 查看旧版的操作。解释标签不会自动回滚已上线页面；恢复上线版本通过新提交进行。
-- [ ] 运行 `bundle3.0 exec jekyll build --trace`、`python3 -m unittest discover -s tests -v` 和 `git diff --check`，预期全部通过；检查首页没有未渲染的 Liquid 标记。
-- [ ] 启动本地预览 `bundle3.0 exec jekyll serve --host 127.0.0.1 --port 4000`；用 Chrome 查看 1440px 与 390px 页面，截图保存到 `/tmp`，确认字体、侧栏、论文列表、菜单和项目图像。浏览器检查 `document.documentElement.scrollWidth <= window.innerWidth`，并用键盘验证导航、菜单和联系方式；发现问题只修复相关文件后重跑受影响的检查。
-- [ ] 提交完整内容与维护说明：`feat: migrate homepage content to editable Markdown`。
+- [x] 运行新增检查，确认 Task 1 的最小内容首页未包含完整论文时失败。
+- [x] 在 `_pages/about.md` 写入简介、教育与工作经历、已有新闻、设计表中的论文、原项目与已有荣誉；保留毕业论文链接。按年份降序列论文，完整列出已有来源中的作者，突出 Xiaoyun Dong，不猜测共同一作或录用状态。按钮使用本地文字样式，现有代码与 BibTeX 链接继续可用。
+- [x] 为各章节设置稳定锚点并保留 Review Focus 中的旧锚点；导航显示 About、Education & Experience、News、Publications、Projects 和 Honors。删除空 Gallery 占位及参考作者的个人内容，允许真实论文作者列表出现合作者 Yang Lou。
+- [x] 在 README 写明手工修改的三个文件、依赖安装与预览命令、发布前备份旧标签的方法，以及用 `git worktree add --detach` 查看旧版的操作。解释标签不会自动回滚已上线页面；恢复上线版本通过新提交进行。
+- [x] 运行 `bundle3.0 exec jekyll build --trace`、`python3 -m unittest discover -s tests -v` 和 `git diff --check`，预期全部通过；检查首页没有未渲染的 Liquid 标记。
+- [x] 启动本地预览 `bundle3.0 exec jekyll serve --host 127.0.0.1 --port 4000`；用 Chrome 查看 1440px 与 390px 页面，截图保存到 `/tmp`，确认字体、侧栏、论文列表、菜单和项目图像。浏览器检查 `document.documentElement.scrollWidth <= window.innerWidth`，并用键盘验证导航、菜单和联系方式；发现问题只修复相关文件后重跑受影响的检查。
+- [x] 提交完整内容与维护说明：`feat: migrate homepage content to editable Markdown`。
 - [ ] 进行一次最终代码与产物审查，验证两个任务覆盖设计中的验收要求；交付分支名、预览地址或截图链接、编辑入口和验证结果，说明论文清单不是完整 Scholar 导出。
 - [ ] 发布前向用户报告预览结果。当前阶段保留 `redesign/academic` 分支和旧版标签；新版发布验收后再标记 `homepage-v2-academic`。

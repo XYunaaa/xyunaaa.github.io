@@ -135,3 +135,25 @@ a:focus-visible, button:focus-visible {
     display: inline-block;
     padding: .2em;
 }
+
+.page__content .paper-link {
+    display: inline-block;
+    padding: .08em .5em;
+    margin: .25em .2em 0 0;
+    border: 1px solid $link-color;
+    border-radius: 3px;
+    font-size: .85em;
+    text-decoration: none;
+}
+
+.project-image {
+    max-width: 540px;
+    width: 100%;
+    height: auto;
+}
+
+video.project-image {
+    max-height: 360px;
+    max-width: 100%;
+    width: auto;
+}

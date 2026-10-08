@@ -28,7 +28,7 @@ class SiteHTML(HTMLParser):
             self.ids.add(attrs["id"])
         if tag == "a" and attrs.get("href"):
             self.links.append(attrs["href"])
-        if tag in ("img", "script") and attrs.get("src"):
+        if tag in ("img", "script", "video") and attrs.get("src"):
             self.resources.append(attrs["src"])
         if tag == "link" and attrs.get("href") and attrs.get("rel") != "canonical":
             self.resources.append(attrs["href"])
@@ -89,6 +89,18 @@ class SiteTests(unittest.TestCase):
         old = self.parse(page)
         self.assertEqual(page.read_bytes(), (ROOT / "research/f1tenth/index.html").read_bytes())
         self.assert_local_targets(page, old.resources)
+
+    def test_publication_types(self):
+        home = self.parse(SITE / "index.html")
+        for paper_id in ("2607.12214", "2607.09764", "2605.07910"):
+            self.assertIn("https://arxiv.org/abs/" + paper_id, home.links)
+        self.assertIn("Preprints", home.text)
+        self.assertIn("Demo: VI-Planning", home.text)
+        self.assertIn("Poster: VI-Planning", home.text)
+
+    def test_project_media(self):
+        home = self.parse(SITE / "index.html")
+        self.assertIn("/research/f1tenth/demo.mp4", home.resources)
 
 
 if __name__ == "__main__":
