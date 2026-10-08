@@ -79,5 +79,22 @@
 - [x] 运行 `bundle3.0 exec jekyll build --trace`、`python3 -m unittest discover -s tests -v` 和 `git diff --check`，预期全部通过；检查首页没有未渲染的 Liquid 标记。
 - [x] 启动本地预览 `bundle3.0 exec jekyll serve --host 127.0.0.1 --port 4000`；用 Chrome 查看 1440px 与 390px 页面，截图保存到 `/tmp`，确认字体、侧栏、论文列表、菜单和项目图像。浏览器检查 `document.documentElement.scrollWidth <= window.innerWidth`，并用键盘验证导航、菜单和联系方式；发现问题只修复相关文件后重跑受影响的检查。
 - [x] 提交完整内容与维护说明：`feat: migrate homepage content to editable Markdown`。
-- [ ] 进行一次最终代码与产物审查，验证两个任务覆盖设计中的验收要求；交付分支名、预览地址或截图链接、编辑入口和验证结果，说明论文清单不是完整 Scholar 导出。
-- [ ] 发布前向用户报告预览结果。当前阶段保留 `redesign/academic` 分支和旧版标签；新版发布验收后再标记 `homepage-v2-academic`。
+- [x] 进行一次最终代码与产物审查，验证两个任务覆盖设计中的验收要求；交付分支名、预览地址或截图链接、编辑入口和验证结果，说明论文清单不是完整 Scholar 导出。
+- [x] 发布前向用户报告预览结果。当前阶段保留 `redesign/academic` 分支和旧版标签；新版发布验收后再标记 `homepage-v2-academic`。
+
+
+## 验证记录 · 2026-10-08
+
+- 实现提交：`003dbed`（模板与旧链接）、`90ba93d`（Markdown 内容与维护说明）。
+- 独立审查未发现 Critical、Important 或 Minor 问题；五项构建产物测试全部通过。
+- 使用独立 Ruby 3.2 执行 Jekyll 构建成功；`git diff --check` 通过，旧资源目录与 `homepage-v1-wowchemy` 一致。
+- Chrome 1440px / 390px 检查无横向溢出、资源加载错误或 JavaScript 异常；Enter、Tab、Escape 菜单与章节跳转通过。项目使用已有赛车 MP4，避免旧的无关封面和 16MB GIF。
+- 本地预览：`http://127.0.0.1:4000/`；截图与浏览器检查结果保存在 `/tmp/xyunaaa-homepage-*.png`、`/tmp/xyunaaa-browser-checks.json`。
+- 按已确认计划保留 `redesign/academic`、`.worktrees/academic/` 和本地旧版标签；未合并或推送。
+
+执行中的取舍及影响：
+
+1. 系统 Ruby 缺少编译头文件且 sudo 需要密码，改用 `/tmp` 独立 Ruby 与编译器；清理临时环境后需重新安装构建环境。
+2. 论文清单维持简单检索初稿，遵循用户后续手工编辑的要求；可能有遗漏或需要纠正的记录。
+3. 远端 Pages 设置与标签备份留待发布阶段验证，遵循当前本地实施范围；线上构建尚未验证，旧标签目前只有本地副本。
+4. 原静态子页面保持逐字不变，保护旧链接；其中已有的内容、样式和元数据问题仍然存在。
