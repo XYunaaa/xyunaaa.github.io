@@ -78,7 +78,7 @@ class SiteTests(unittest.TestCase):
     def test_local_resources_and_anchors(self):
         page = SITE / "index.html"
         home = self.parse(page)
-        self.assertTrue({"about", "news", "featured", "publications", "research"} <= home.ids)
+        self.assertTrue({"about", "education", "news", "featured", "publications", "honors"} <= home.ids)
         self.assert_local_targets(page, home.resources + home.links)
         source = page.read_text(encoding="utf-8")
         self.assertNotIn("{%", source)
@@ -92,15 +92,16 @@ class SiteTests(unittest.TestCase):
 
     def test_publication_types(self):
         home = self.parse(SITE / "index.html")
-        for paper_id in ("2607.12214", "2607.09764", "2605.07910"):
+        for paper_id in ("2607.12214v1", "2607.09764", "2605.07910"):
             self.assertIn("https://arxiv.org/abs/" + paper_id, home.links)
-        self.assertIn("Preprints", home.text)
-        self.assertIn("Demo: VI-Planning", home.text)
-        self.assertIn("Poster: VI-Planning", home.text)
+        self.assertIn("Under Review", home.text)
+        self.assertIn("NeurIPS 2026", home.text)
+        self.assertIn("MobiCom 2025", home.text)
 
-    def test_project_media(self):
-        home = self.parse(SITE / "index.html")
-        self.assertIn("/research/f1tenth/demo.mp4", home.resources)
+    def test_project_media_export(self):
+        relative = "research/f1tenth/demo.mp4"
+        self.assertTrue((SITE / relative).is_file())
+        self.assertEqual((SITE / relative).read_bytes(), (ROOT / relative).read_bytes())
 
 
 if __name__ == "__main__":

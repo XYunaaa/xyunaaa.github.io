@@ -146,6 +146,23 @@ a:focus-visible, button:focus-visible {
     text-decoration: none;
 }
 
+.publication-tag {
+    display: inline-flex;
+    vertical-align: middle;
+    font: normal 11px/20px Verdana, sans-serif;
+    color: #fff;
+    white-space: nowrap;
+
+    span {
+        padding: 0 5px;
+        background: #555;
+    }
+
+    span:last-child {
+        background: #006da3;
+    }
+}
+
 .project-image {
     max-width: 540px;
     width: 100%;
