@@ -12,8 +12,7 @@ redirect_from:
 
 I am a Ph.D. student in the FSM Lab at [City University of Hong Kong](https://www.cityu.edu.hk/), advised by Prof. [Jianping Wang](https://www.cs.cityu.edu.hk/~jianwang/).
 
-My research focuses on **scene understanding, 4D reconstruction, and autonomous driving**, including multi-object tracking, sensor fusion, and reconstruction of dynamic driving scenes.
-
+My research focuses on **scene understanding, 4D reconstruction, and autonomous driving**.
 I received my master's degree with Distinction from Beihang University in June 2022. Before starting my Ph.D., I worked on LiDAR perception at Momenta.
 
 ## Education & Experience
