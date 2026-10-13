@@ -1,0 +1,8 @@
+.worktrees/
+_site/
+.bundle/
+.sass-cache/
+.jekyll-cache/
+/vendor/
+__pycache__/
+.DS_Store

@@ -1,0 +1,50 @@
+title: "Xiaoyun Dong"
+description: "Scene understanding, 4D reconstruction, and autonomous driving."
+url: "https://xyunaaa.github.io"
+baseurl: ""
+repository: "XYunaaa/xyunaaa.github.io"
+timezone: Asia/Hong_Kong
+
+author:
+  name: "Xiaoyun Dong"
+  avatar: "/authors/admin/avatar_huf3eeb96029b3a2cbd16af46fe4ec8c9e_84386_270x270_fill_q75_lanczos_center.jpg"
+  bio: "Ph.D. student · City University of Hong Kong"
+  location: "Hong Kong"
+  email: "luciana_dong@163.com"
+  github: "XYunaaa"
+  googlescholar: "https://scholar.google.com/citations?user=YK8VvrAAAAAJ&hl=en"
+
+include:
+  - _pages
+exclude:
+  - docs
+  - tests
+  - vendor
+  - .bundle
+  - .worktrees
+  - .superpowers
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - assets/js/_main.js
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  hard_wrap: false
+sass:
+  sass_dir: _sass
+  style: compressed
+plugins:
+  - jekyll-sitemap
+  - jekyll-redirect-from
+
+defaults:
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: default
+      author_profile: true
